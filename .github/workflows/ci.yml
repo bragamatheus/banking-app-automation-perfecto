@@ -1,0 +1,37 @@
+name: Mobile Automation Test
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.7'
+
+      - name: Instalar dependencies
+        run: pip install -r requirements.txt
+
+      - name: Instalar perfecto-py3
+        run: pip install perfectolibrary-py37
+
+      - name: Executar testes
+        run: |
+          robot -d ./logs -i suc tests/login.robot
+
+      - name: Logs e Relatórios
+        uses: actions/upload-pages-artifact@v3.0.1
+        if: always()
+        with:
+          name: reports
+          path: ./logs
+          retention-days: 30

@@ -1,0 +1,23 @@
+# Dependencies
+node_modules
+jspm_packages
+
+# VsCode
+.vscode
+
+# env files
+resources/environment/env.resource
+
+# logs
+logs
+log
+
+
+
+#apks
+app/*
+
+# Misc
+.DS_Store
+*.pem
+Thumbs.db

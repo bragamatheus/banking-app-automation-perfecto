@@ -1,0 +1,24 @@
+{
+  "deposit": {
+    "bol_min": {
+      "cpf": "105.019.080-72",
+      "senha": "Teste@123",
+      "valor": "2000"
+    },
+    "bol_inf": {
+      "cpf": "105.019.080-72",
+      "senha": "Teste@123",
+      "valor": "1000"
+    },
+    "bol_max": {
+      "cpf": "105.019.080-72",
+      "senha": "Teste@123",
+      "valor": "3000000"
+    },
+    "dep_pix": {
+      "cpf": "105.019.080-72",
+      "senha": "Teste@123",
+      "valor": "2500"
+    }
+  }
+}

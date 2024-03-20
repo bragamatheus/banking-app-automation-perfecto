@@ -1,0 +1,44 @@
+{
+  "transfer": {
+    "pix": {
+      "cpf": "105.019.080-72",
+      "senha": "Teste@123",
+      "name-fav": "Tarcísio Do Arcodeon",
+      "phone": "(11)95836-4472",
+      "cpf-cnpj": "848.226.880-54",
+      "email": "testeqa2023+91928@gmail.com",
+      "chave-aleatoria": "715b5adc-8b3d-4af3-b212-add119c7cf90"
+    },
+
+    "ted": {
+      "cpf": "848.226.880-54",
+      "senha": "Teste@123",
+      "contato": "Ana Castela",
+      "val": "1800"
+    },
+    "ted_novo": {
+      "cpf": "848.226.880-54",
+      "senha": "Teste@123",
+      "banco": "301 Dock Ip S/A.",
+      "agencia": "0001",
+      "conta": "47611",
+      "dig": "4",
+      "nome": "Ana Castela",
+      "doc": "105.019.080-72",
+      "val": "1100"
+    },
+    "p2p": {
+      "cpf": "848.226.880-54",
+      "senha": "Teste@123",
+      "doc": "105.019.080-72",
+      "desc": "Transferencia p2p para: ",
+      "val": "2500"
+    },
+    "code": {
+      "cpf": "848.226.880-54",
+      "senha": "Teste@123",
+      "qrcode": "00020101021126330014br.gov.bcb.pix011110501908072520400005303986540512.305802BR5911Ana Castela6009SAO PAULO62070503***6304F493",
+      "val": "1230"
+    }
+  }
+}

@@ -26,7 +26,7 @@ jobs:
 
       - name: Executar testes
         run: |
-          robot -d ./logs -i suc tests/login.robot
+          robot -d ./logs tests/login.robot
 
       - name: Logs e Relatórios
         uses: actions/upload-pages-artifact@v3.0.1

@@ -27,7 +27,7 @@ jobs:
 
       - name: Executar testes
         run: |
-          robot -d ./logs tests/login.robot
+          robot -d ./logs -i suc tests/login.robot
 
 
       - name: Upload logs and reports

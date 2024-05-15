@@ -27,7 +27,7 @@ jobs:
 
       - name: Executar testes
         run: |
-          robot -d ./logs tests/login.robot
+          robot -d ./logs -i suc tests/login.robot
 
       - name: Logs e Relatórios
         uses: actions/upload-pages-artifact@v3.0.1
@@ -36,3 +36,13 @@ jobs:
           name: reports
           path: ./logs
           retention-days: 30
+
+      - name: Notificar Discord com resultado
+        if: always()
+        run: |
+          STATUS="SUCESSO"
+          if [ "${{ job.status }}" != "success" ]; then STATUS="FALHA"; fi
+          LOG_URL="${{ steps.upload-pages-artifact.outputs.url }}"
+          curl -X POST -H "Content-Type: application/json" \
+          -d "{\"content\": \"${STATUS} no GitHub Actions: Mobile Automation Test. Verifique os logs para mais detalhes: ${LOG_URL}\"}" \
+          ${{ secrets.DISCORD_WEBHOOK_URL }}

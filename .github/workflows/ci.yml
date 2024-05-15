@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - main
+
+  schedule:
+    - cron: '0 11,15,19 * * *' # 8h, 12h e 16h
 jobs:
   build:
     runs-on: ubuntu-latest

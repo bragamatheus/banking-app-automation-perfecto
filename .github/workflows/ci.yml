@@ -29,16 +29,10 @@ jobs:
         run: |
           robot -d ./logs -i suc tests/login.robot
 
-      - name: Logs e Relatórios
-        uses: actions/upload-pages-artifact@v3.0.1
-        if: always()
-        with:
-          name: reports
-          path: ./logs
-          retention-days: 30
 
       - name: Upload logs and reports
         uses: actions/upload-artifact@v3
+        if: always()
         with:
           name: logs-and-reports
           path: ./logs

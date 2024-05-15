@@ -37,12 +37,17 @@ jobs:
           path: ./logs
           retention-days: 30
 
+      - name: Upload logs and reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: logs-and-reports
+          path: ./logs
+
       - name: Notificar Discord com resultado
         if: always()
         run: |
           STATUS="SUCESSO"
           if [ "${{ job.status }}" != "success" ]; then STATUS="FALHA"; fi
-          LOG_URL="${{ steps.upload-pages-artifact.outputs.url }}"
           curl -X POST -H "Content-Type: application/json" \
-          -d "{\"content\": \"${STATUS} no GitHub Actions: Mobile Automation Test. Verifique os logs para mais detalhes: ${LOG_URL}\"}" \
+          -d "{\"content\": \"${STATUS} no GitHub Actions: Mobile Automation Test. Verifique os logs e relatórios para mais detalhes: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
           ${{ secrets.DISCORD_WEBHOOK_URL }}

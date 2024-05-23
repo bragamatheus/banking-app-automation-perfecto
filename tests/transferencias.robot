@@ -1,3 +1,4 @@
+
 *** Settings ***
 Documentation       Suite contendo os testes de saldo da conta
 
@@ -9,85 +10,80 @@ Test Teardown       Finalizar sessao
 
 *** Test Cases ***
 Deve realizar transfer PIX phone
-    [Tags]    pix
+    [Tags]    pix_pho    pix
 
     ${data}    Load Json From File    ${EXECDIR}/resources/fixtures/transfer.json    encoding=utf-8
 
     Access app with    cpf=${data}[transfer][pix][cpf]    senha=${data}[transfer][pix][senha]
     Access pix
     Access transfer pix
-    Select Key Option    option=${celular}    key=${data}[transfer][pix][phone]
+    Selecionar card celular    key=${data}[transfer][pix][phone]
     Transfer value    valor=10000
     Scroll app
-    Entry description    desc=transfer pix para ${data}[transfer][pix][name-fav]
-    Check transfer
+    Pix form submit
     Transactional password
-    Transfer voucher    mensagem=Pix realizado com sucesso!
+    Transfer voucher    mensagem=Concluído
 
 Deve realizar transfer PIX cpf
-    [Tags]    pix
+    [Tags]    pix_doc    pix
 
     ${data}    Load Json From File    ${EXECDIR}/resources/fixtures/transfer.json    encoding=utf-8
 
     Access app with    cpf=${data}[transfer][pix][cpf]    senha=${data}[transfer][pix][senha]
     Access pix
     Access transfer pix
-    Select Key Option    option=${cpf_cnpj}    key=${data}[transfer][pix][cpf-cnpj]
+    Selecionar card cpf-cnpj       key=${data}[transfer][pix][cpf-cnpj]
     Transfer value    valor=10000
     Scroll app
-    Entry description    desc=transfer pix para ${data}[transfer][pix][name-fav]
-    Check transfer
+    Pix form submit
     Transactional password
-    Transfer voucher    mensagem=Pix realizado com sucesso!
+    Transfer voucher    mensagem=Concluído
 
 Deve realizar transfer PIX email
-    [Tags]    pix
+    [Tags]    pix_ema    pix
 
     ${data}    Load Json From File    ${EXECDIR}/resources/fixtures/transfer.json    encoding=utf-8
 
     Access app with    cpf=${data}[transfer][pix][cpf]    senha=${data}[transfer][pix][senha]
     Access pix
     Access transfer pix
-    Select Key Option    option=${email}    key=${data}[transfer][pix][email]
+    Selecionar card email    key=${data}[transfer][pix][email]
     Transfer value    valor=10000
     Scroll app
-    Entry description    desc=transfer pix para ${data}[transfer][pix][name-fav]
-    Check transfer
+    Pix form submit
     Transactional password
-    Transfer voucher    mensagem=Pix realizado com sucesso!
+    Transfer voucher    mensagem=Concluído
 
 Deve realizar transfer PIX chave aleatoria
-    [Tags]    pix
+    [Tags]    pix_ale    pix
 
     ${data}    Load Json From File    ${EXECDIR}/resources/fixtures/transfer.json    encoding=utf-8
 
     Access app with    cpf=${data}[transfer][pix][cpf]    senha=${data}[transfer][pix][senha]
     Access pix
     Access transfer pix
-    Select Key Option    option=${chave_aleatoria}    key=${data}[transfer][pix][chave_aleatoria]
+    Selecionar card aleatoria        key=${data}[transfer][pix][chave-aleatoria]
     Transfer value    valor=10000
     Scroll app
-    Entry description    desc=transfer pix para ${data}[transfer][pix][name-fav]
-    Check transfer
+    Pix form submit
     Transactional password
-    Transfer voucher    mensagem=Pix realizado com sucesso!
+    Transfer voucher    mensagem=Concluído
 
 Deve realizar agendamento de transfer PIX
-    [Tags]    pix_age
+    [Tags]    pix_age    pix
 
     ${data}    Load Json From File    ${EXECDIR}/resources/fixtures/transfer.json    encoding=utf-8
 
     Access app with    cpf=${data}[transfer][pix][cpf]    senha=${data}[transfer][pix][senha]
     Access pix
     Access transfer pix
-    Select Key Option    option=${email}    key=${data}[transfer][pix][email]
+    Selecionar card email   key=${data}[transfer][pix][email]
     Date transfer scheduling
     Transfer value    valor=5000
     Scroll app
-    Entry description    desc=transfer pix para ${data}[transfer][pix][name-fav]
-    Check transfer
+    Pix form submit
     Transactional password
-    Transfer voucher    mensagem=Pix agendado com sucesso!
+    Transfer voucher    mensagem=Agendado
 
 Deve realizar transfer P2P
     [Tags]    p2p
@@ -97,15 +93,15 @@ Deve realizar transfer P2P
     Access app with    cpf=${data}[transfer][p2p][cpf]    senha=${data}[transfer][p2p][senha]
     Access transfer
     Access transfer p2p
-    P2p input identifier    105.019.080-72    # doc=cpf=${data}[transfer][p2p][doc]
-    P2p input description    desc=cpf=${data}[transfer][p2p][desc]
+    P2p input identifier       476114     # ${data}[transfer][p2p][doc]
+    P2p input description        ${data}[transfer][p2p][desc]
     Scroll app
     P2p input value    val=cpf=${data}[transfer][p2p][val]
     Transactional password
-    Transfer voucher    mensagem=Transferência realizada com sucesso!
+    Transfer voucher    mensagem=Concluído
 
 Deve realizar transfer TED DOC Novo contato
-    [Tags]    ted_new
+    [Tags]    ted_new     ted
 
     ${data}    Load Json From File    ${EXECDIR}/resources/fixtures/transfer.json    encoding=utf-8
 
@@ -128,7 +124,7 @@ Deve realizar transfer TED DOC Novo contato
     Ted button continuar
 
     Transactional password
-    Transfer voucher    mensagem=Transferência realizada com sucesso!
+    Transfer voucher    mensagem=Concluído
 
 Deve realizar transfer TED DOC para um contato cadastrado
     [Tags]    ted
@@ -144,10 +140,10 @@ Deve realizar transfer TED DOC para um contato cadastrado
     Ted input value    val=${data}[transfer][ted][val]
     Ted button continuar
     Transactional password
-    Transfer voucher    mensagem=Transferência realizada com sucesso!
+    Transfer voucher    mensagem=Concluído
 
 Deve realizar Pix Copia e Cola
-    [Tags]    pix_cop
+    [Tags]    pix_cop    px
 
     ${data}    Load Json From File    ${EXECDIR}/resources/fixtures/transfer.json    encoding=utf-8
 
@@ -158,10 +154,10 @@ Deve realizar Pix Copia e Cola
     Destinatario copy past
     Conferir pagamento copy past
     Transactional password
-    Transfer voucher    mensagem=Pix realizado com sucesso!
+    Transfer voucher    mensagem=Concluído
 
 Deve realizar Pix QRcode
-    [Tags]    pix_qrc
+    [Tags]    pix_qrc     px
 
     ${data}    Load Json From File    ${EXECDIR}/resources/fixtures/transfer.json    encoding=utf-8
 
@@ -172,7 +168,7 @@ Deve realizar Pix QRcode
     Wait Until Page Contains    text=Aponte a câmera para um QR code do Pix
 
 Deve consultar minhas chaves
-    [Tags]    pix_cha
+    [Tags]    pix_cha    px
 
     ${data}    Load Json From File    ${EXECDIR}/resources/fixtures/transfer.json    encoding=utf-8
 
@@ -182,7 +178,7 @@ Deve consultar minhas chaves
     Wait Until Page Contains    text=Gerenciar chaves
 
 Deve consultar Meus limites Pix transferência
-    [Tags]    pix_lim_tra
+    [Tags]    pix_lim_tra    px
 
     ${data}    Load Json From File    ${EXECDIR}/resources/fixtures/transfer.json    encoding=utf-8
 
@@ -193,7 +189,7 @@ Deve consultar Meus limites Pix transferência
     Wait Until Page Contains    text=Limites Pix
 
 Deve consultar Meus limites Pix saque e pix troco
-    [Tags]    pix_saq_tro
+    [Tags]    pix_saq_tro    px
 
     ${data}    Load Json From File    ${EXECDIR}/resources/fixtures/transfer.json    encoding=utf-8
 
@@ -204,7 +200,7 @@ Deve consultar Meus limites Pix saque e pix troco
     Wait Until Page Contains    text=Limite PIX Saque/Troco
 
 Deve visualizar extrato pix
-    [Tags]    ext_pix
+    [Tags]    ext_pix    px
 
     ${data}    Load Json From File    ${EXECDIR}/resources/fixtures/transfer.json    encoding=utf-8
 

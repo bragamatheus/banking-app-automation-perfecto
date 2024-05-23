@@ -85,6 +85,7 @@ Access account button
     Wait Until Page Contains    text=Saldo atual
 
 Scroll app
+    Sleep    1
     Swipe By Percent    50    90    50    10
 
 Alert message
@@ -98,45 +99,24 @@ Forgot your password
     Wait Until Element Is Visible    ${el}    30
     Click Element    ${el}
 
-    Wait Until Page Contains    Esqueci minha senha
-    Wait Until Page Contains    Insira seu CPF ou CNPJ
+    ${el1} =    Set Variable     //android.view.ViewGroup[@content-desc="button-i-understood"]
+    Wait Until Element Is Visible    ${el1}    30
+    Click Element    ${el1}     
 
 Fill in document field
     [Arguments]    ${doc}
-    ${el} =    Set Variable    accessibility_id=input-document
-
-    Input Text    ${el}    ${doc}
-
-Continue button
-    ${el} =    Set Variable    accessibility_id=button-continue
-
-    Wait Until Element Is Visible    ${el}    30
-    Click Element    ${el}
-
-Button I understand
-    Wait Until Page Contains    Criar senha
-    Wait Until Page Contains    Siga as instruções abaixo para criar uma senha segura:
-
-    ${el} =    Set Variable    accessibility_id=button-i-understood
-
-    Wait Until Element Is Visible    ${el}    30
-    Click Element    ${el}
-
-Create a new password now
-    [Arguments]    ${new_senha}    ${conf_senha}
-
-    Wait Until Page Contains    Crie agora uma nova senha
-    Wait Until Page Contains    Como criar uma senha segura
-
+    
     ${el} =    Set Variable    accessibility_id=input-new-password
     Wait Until Element Is Visible    ${el}    30
-    Input Text    ${el}    ${new_senha}
+    Input Text    ${el}    ${doc}
 
-    ${el} =    Set Variable    accessibility_id=input-confirm-new-password
-    Wait Until Element Is Visible    ${el}    30
-    Input Text    ${el}    ${conf_senha}
+    ${el1} =    Set Variable    accessibility_id=input-confirm-new-password
+    Wait Until Element Is Visible    ${el1}    30
+    Input Text    ${el1}    ${doc}
 
+Continue button
     ${el} =    Set Variable    accessibility_id=continue-reset-password
+
     Wait Until Element Is Visible    ${el}    30
     Click Element    ${el}
 

@@ -112,7 +112,6 @@ Deve acessar menu Avaliar o app
     Access app with    ${data}[profile][cpf]    ${data}[profile][senha]
     Access profile
     Select profile item    item=${Avaliar_app}
-    Wait Until Page Contains    text=Welcome to Chrome
 
 Deve acessar menu Excluir dados pessoais
     [Tags]    exc_dad

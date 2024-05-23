@@ -41,10 +41,8 @@ Deve redefinir sua senha [Esqueceu a sua senha?]
     Fill in the CPF or CNPJ field    ${data}[login][pass][cpf]
     Confirm button
     Forgot your password
-    Fill in document field    ${data}[login][pass][cpf]
+    Fill in document field    ${data}[login][pass][senha]
     Continue button
-    Button I understand
-    Create a new password now    ${data}[login][pass][senha]    ${data}[login][pass][senha]
     Verification code
     Success Message   Você redefiniu sua senha com sucesso!
 
@@ -64,7 +62,7 @@ Deve entrar com outra conta
     ${data}    Load Json From File    ${EXECDIR}/resources/fixtures/login.json    encoding=utf-8
 
     Start trampay app
-    Fill in the CPF or CNPJ field    000.000.141-41
+    Fill in the CPF or CNPJ field    ${data}[login][pass][cpf]
     Confirm button
     Access with another CPF/CNPJ   
     Fill in the CPF or CNPJ field    ${data}[login][sucesso][cpf]

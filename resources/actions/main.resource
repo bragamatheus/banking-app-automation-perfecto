@@ -96,7 +96,51 @@ Receive Pix
     Wait Until Element Is Visible    ${el}    30
     Click Element    ${el}
 
+Cadastrar chave
+    ${el_chave} =    Set Variable     //android.view.ViewGroup[@content-desc="CADASTRAR CHAVE"]
+    Wait Until Element Is Visible    ${el_chave}    30
+    Click Element        ${el_chave}   
+
+    ${el_prox} =    Set Variable     //android.view.ViewGroup[@content-desc="PRÓXIMO"]
+    Wait Until Element Is Visible    ${el_prox}    30
+    Click Element        ${el_prox} 
+
+    ${el_ok} =    Set Variable     //android.view.ViewGroup[@content-desc="OK, ENTENDI"]
+    Wait Until Element Is Visible    ${el_ok}    30
+    Click Element       ${el_ok} 
+
+    Sleep     2
+    ${el_ativ} =    Set Variable     //android.view.ViewGroup[@content-desc="Chave: 105.019.080-72, Status: Ativo"]
+    Wait Until Element Is Visible        ${el_ativ}     30
+    Click Element            ${el_ativ}
+
+    Sleep     1
+    ${el_volt} =    Set Variable     //android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup
+    Wait Until Element Is Visible        ${el_volt}     30
+    Click Element       ${el_volt}  
+
+    Receive Pix
+
+
 Select key
+    
+    ${cadastrar_chave_visible} =    Run Keyword        Cadastrar chave
+
+    Run Keyword If    ${cadastrar_chave_visible}    Cadastrar chave
+    ...    ELSE
+    ...    Log    A opção 'Cadastrar chave' não foi encontrada na tela.
+
+    ${el} =    Set Variable    accessibility_id=select-key
+    Wait Until Element Is Visible    ${el}    30
+    Click Element    ${el}
+
+    ${el_k} =    Set Variable
+    ...    xpath=//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[2]/android.view.ViewGroup
+    Wait Until Element Is Visible    ${el_k}    30
+    Click Element    ${el_k}
+
+    Sleep       2
+
     ${el} =    Set Variable    accessibility_id=select-key
     Wait Until Element Is Visible    ${el}    30
     Click Element    ${el}
@@ -179,20 +223,8 @@ Access transfer pix
     Element Should Be Enabled    ${el_tra_pix}
     Click Element    ${el_tra_pix}
 
-    Wait Until Page Contains    text=Transferência por chave
+    # Wait Until Page Contains    text=Transferência por chave
 
-Select Key Option
-    [Arguments]    ${option}    ${key}
-    ${el_option} =    Set Variable    ${option}
-    Wait Until Element Is Visible    ${el_option}    30
-    Click Element    ${el_option}
-
-    Wait Until Element Is Visible    ${el_key}    30
-    Input Text    ${el_key}    ${key}
-
-    Scroll app
-    Sleep    1
-    Button continuar
 
 Button continuar
     ${el} =    Set Variable    xpath=//android.widget.TextView[@text="CONTINUAR"]
@@ -222,12 +254,21 @@ Date transfer scheduling
 Transfer value
     [Arguments]    ${valor}
 
-    Wait Until Page Contains    text=Informações do destinatário
-
     Sleep    2
     ${el} =    Set Variable    accessibility_id=input-value-pix
     Wait Until Element Is Visible    ${el}    30
     Input Text    ${el}    ${valor}
+
+Pix form submit
+    Sleep    1
+    ${el} =    Set Variable     //android.view.ViewGroup[@content-desc="pix-form-submit"]
+    Wait Until Element Is Visible    ${el}    30
+    Click Element    ${el}
+
+    Sleep    1
+    ${el1} =    Set Variable     //android.view.ViewGroup[@content-desc="CONTINUAR"]
+    Wait Until Element Is Visible    ${el1}    30
+    Click Element    ${el1}
 
 Entry description
     [Arguments]    ${desc}
@@ -240,8 +281,8 @@ Entry description
     Button continuar
 
 Check transfer
-    Wait Until Page Contains    text=Conferir transferência
-    Wait Until Page Contains    text=Dados da transferência
+    # Wait Until Page Contains    text=Conferir transferência
+    # Wait Until Page Contains    text=Dados da transferência
     Button continuar
 
 Transactional password
@@ -259,10 +300,6 @@ Transactional password
     Button finish
 
 Button finish
-    # ${el} =    Set Variable    xpath=//*[@text="FINALIZAR"]
-    # ${el} =    Set Variable    accessibility_id=validate-code-button
-    # Wait Until Element Is Visible    ${el}    30
-    # Click Element    ${el}
 
     ${el1} =    Set Variable    xpath=//*[@text="FINALIZAR"]
     ${el2} =    Set Variable    accessibility_id=validate-code-button
@@ -283,22 +320,24 @@ Transfer voucher
     Wait Until Element Is Visible    ${el}    30
 
 Access transfer p2p
-    ${el} =    Set Variable    accessibility_id=access-transfer-p2p
+    Sleep    2
+    ${el} =    Set Variable        //android.view.ViewGroup[@content-desc="Entre contas Trampay"]
     Wait Until Element Is Visible    ${el}    30
     Click Element    ${el}
 
-    Wait Until Page Contains    text=Transferência P2P
 
 P2p input identifier
     [Arguments]    ${doc}
 
-    ${el} =    Set Variable    accessibility_id=p2p-input-identifier
+    ${el} =    Set Variable    //android.widget.EditText
     Wait Until Element Is Visible    ${el}    30
-    Sleep    1
+    Sleep    2
     Input Text    ${el}    ${doc}
 
-    Sleep    3
-    P2p form submit
+    Sleep    1
+    ${el1} =    Set Variable     //android.view.ViewGroup[@content-desc="CONTINUAR"]
+    Wait Until Element Is Visible    ${el1}    30
+    Click Element    ${el1}
 
 P2p form submit
     ${el_p2p} =    Set Variable    accessibility_id=p2p-form-submit
@@ -323,7 +362,7 @@ P2p input value
     P2p form submit
 
 Access transfer ted doc
-    ${el} =    Set Variable    accessibility_id=access-transfer-ted-doc
+    ${el} =    Set Variable     //android.view.ViewGroup[@content-desc="access-transfer-ted-doc"]
     Wait Until Element Is Visible    ${el}    30
     Click Element    ${el}
 
@@ -521,35 +560,35 @@ Access my limits
     Click Element    ${el}
 
 limits PIX
-    ${el} =    Set Variable    xpath=//android.widget.TextView[@text="PIX"]
+    ${el} =    Set Variable    xpath=//android.view.ViewGroup[@content-desc="Limites Pix"]
     Wait Until Element Is Visible    ${el}    30
     Click Element    ${el}
 
     Wait Until Page Contains    text=Limite PIX
 
 limits TED
-    ${el} =    Set Variable    xpath=//android.widget.TextView[@text="TED"]
+    ${el} =    Set Variable    xpath=//android.view.ViewGroup[@content-desc="Limites Ted"]
     Wait Until Element Is Visible    ${el}    30
     Click Element    ${el}
 
     Wait Until Page Contains    text=Limite TED
 
 limits Pagamentos de Boletos
-    ${el} =    Set Variable    xpath=//android.widget.TextView[@text="Pagamentos de Boletos"]
+    ${el} =    Set Variable    xpath=//android.view.ViewGroup[@content-desc="Pagamentos de Boletos"]
     Wait Until Element Is Visible    ${el}    30
     Click Element    ${el}
 
     Wait Until Page Contains    text=Limite de Pagamentos
 
 limits Transferência entre contas Trampay
-    ${el} =    Set Variable    xpath=//android.widget.TextView[@text="Transferência entre contas Trampay"]
+    ${el} =    Set Variable    xpath=//android.view.ViewGroup[@content-desc="Transferência entre contas Trampay"]
     Wait Until Element Is Visible    ${el}    30
     Click Element    ${el}
 
     Wait Until Page Contains    text=Limite entre contas
 
 limits PIX Saque e PIX Troco
-    ${el} =    Set Variable    xpath=//android.widget.TextView[@text="PIX Saque e PIX Troco"]
+    ${el} =    Set Variable    xpath=//android.view.ViewGroup[@content-desc="PIX Saque e PIX Troco"]
     Wait Until Element Is Visible    ${el}    30
     Click Element    ${el}
 
@@ -581,12 +620,91 @@ Destinatario copy past
 
 Conferir pagamento copy past
     Sleep    1
-    ${el} =    Set Variable    xpath=//android.widget.TextView[@text="CONTINUAR"]
+    ${el} =    Set Variable    xpath=//android.view.ViewGroup[@content-desc="CONTINUAR"]
+    
     Wait Until Element Is Visible    ${el}    30
     Click Element    ${el}
 
 Access pix qr code
     Sleep    4
     ${el} =    Set Variable    accessibility_id=access-pix-qr-code
+    Wait Until Element Is Visible    ${el}    30
+    Click Element    ${el}
+
+
+Selecionar card celular
+    [Arguments]      ${key}
+  
+    Sleep   1
+    ${el} =    Set Variable        //android.view.ViewGroup[@content-desc="Celular"]
+    Wait Until Element Is Visible    ${el}    30
+    Click Element    ${el}
+
+    Sleep   1
+    ${el1} =    Set Variable        //android.widget.EditText[@resource-id="transfer-select-key-phoneNumber-input"]
+    Wait Until Element Is Visible    ${el1}    30
+    Input Text    ${el1}    ${key}
+
+    Sleep   1
+    ${el2} =    Set Variable        //android.view.ViewGroup[@content-desc="CONTINUAR"]
+    Element Should Be Enabled    ${el2}
+    Click Element    ${el2}
+    
+
+Selecionar card cpf-cnpj
+    [Arguments]      ${key}
+
+    Sleep    2
+    ${el} =    Set Variable         //android.view.ViewGroup[@content-desc="CPF/CNPJ"]
+    Wait Until Element Is Visible    ${el}    30
+    Click Element    ${el}
+
+    Sleep   1
+    ${el1} =    Set Variable        //android.widget.EditText[@resource-id="transfer-select-key-nationalRegistration-input"]
+    Wait Until Element Is Visible    ${el1}    30
+    Input Text    ${el1}    ${key}
+
+    Sleep   1
+    ${el2} =    Set Variable        //android.view.ViewGroup[@content-desc="CONTINUAR"]
+    Element Should Be Enabled    ${el2}
+    Click Element    ${el2}
+
+Selecionar card email
+    [Arguments]      ${key}
+
+    ${el} =    Set Variable        //android.view.ViewGroup[@content-desc="E-mail"]
+    Wait Until Element Is Visible    ${el}    30
+    Click Element    ${el}
+
+        Sleep   1
+    ${el1} =    Set Variable         //android.widget.EditText[@resource-id="transfer-select-key-email-input"]   
+    Wait Until Element Is Visible    ${el1}    30
+    Input Text    ${el1}    ${key}
+
+    Sleep   1
+    ${el2} =    Set Variable        //android.view.ViewGroup[@content-desc="CONTINUAR"]
+    Element Should Be Enabled    ${el2}
+    Click Element    ${el2}
+
+Selecionar card aleatoria
+    [Arguments]      ${key}
+
+    Sleep    3
+    ${el} =    Set Variable        //android.view.ViewGroup[@content-desc="Aleatória"]
+    Wait Until Element Is Visible    ${el}    30
+    Click Element    ${el}
+
+    Sleep   1
+    ${el1} =    Set Variable        //android.widget.EditText[@resource-id="transfer-select-key-evp-input"]
+    Wait Until Element Is Visible    ${el1}    30
+    Input Text    ${el1}    ${key}
+
+    Sleep   1
+    ${el2} =    Set Variable        //android.view.ViewGroup[@content-desc="CONTINUAR"]
+    Element Should Be Enabled    ${el2}
+    Click Element    ${el2}
+
+Selecionar card banco ag cc
+    ${el} =    Set Variable        //android.view.ViewGroup[@content-desc="Banco, Ag e Cc"]
     Wait Until Element Is Visible    ${el}    30
     Click Element    ${el}

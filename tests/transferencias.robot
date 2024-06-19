@@ -10,7 +10,7 @@ Test Teardown       Finalizar sessao
 
 *** Test Cases ***
 Deve realizar transfer PIX phone
-    [Tags]    pix_pho    pix
+    [Tags]    pix_pho    pix    smoke
 
     ${data}    Load Json From File    ${EXECDIR}/resources/fixtures/transfer.json    encoding=utf-8
 

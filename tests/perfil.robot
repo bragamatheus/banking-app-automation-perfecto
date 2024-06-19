@@ -9,7 +9,7 @@ Test Teardown       Finalizar sessao
 
 *** Test Cases ***
 Deve deslogar com sucesso
-    [Tags]    sair
+    [Tags]    sair    smoke
 
     ${data}    Load Json From File    ${EXECDIR}/resources/fixtures/profile.json    encoding=utf-8
 

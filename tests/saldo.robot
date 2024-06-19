@@ -9,7 +9,7 @@ Test Teardown       Finalizar sessao
 
 *** Test Cases ***
 Deve visualizar saldo da conta
-    [Tags]    sal
+    [Tags]    sal    smoke
 
     ${data}    Load Json From File    ${EXECDIR}/resources/fixtures/login.json    encoding=utf-8
 

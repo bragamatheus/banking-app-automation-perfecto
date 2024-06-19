@@ -9,7 +9,7 @@ Test Teardown       Finalizar sessao
 
 *** Test Cases ***
 Deve efetuar login com sucesso
-    [Tags]    suc
+    [Tags]    suc    smoke
 
     ${data}    Load Json From File    ${EXECDIR}/resources/fixtures/login.json    encoding=utf-8
 

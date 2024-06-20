@@ -44,5 +44,5 @@ jobs:
           STATUS="SUCESSO"
           if [ "${{ job.status }}" != "success" ]; then STATUS="FALHA"; fi
           curl -X POST -H "Content-Type: application/json" \
-          -d "{\"content\": \"${STATUS}:  E ai time de QA, Segue o relatório da execução da TRAMPAY para verificar mais detalhes: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
+          -d "{\"content\": \"${STATUS} E ai time de QA, Segue o relatório da execução da TRAMPAY para verificar mais detalhes: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
           ${{ secrets.DISCORD_WEBHOOK_URL }}
